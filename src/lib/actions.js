@@ -10,6 +10,7 @@ export async function login(formData) {
   // Obtener usuario datos del formulario
   const name = formData.get('name') || 'jose'
   const email = formData.get('email') || 'jose@jose.com'
+  const password = formData.get('password') || '1234'
   const callbackUrl = formData.get('callbackUrl') || LOGIN_URL
 
   // Comprobar si credenciales son válidas
@@ -18,7 +19,7 @@ export async function login(formData) {
   if (!authenticated) return
 
   // Si hay autenticación correcta, creamos cookie de sesión
-  await setCookie('session', { name, email })
+  await setCookie('session', { name, email, password });
 
   redirect(callbackUrl);
 }
